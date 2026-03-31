@@ -1,0 +1,97 @@
+import { Link } from "react-router";
+
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      {}
+      <header className="bg-[#0f172a] text-white px-6 py-4 shadow-lg">
+        <nav className="max-w-6xl mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2.5 text-xl font-semibold tracking-tight">
+            <img src="/factrixlogo.svg" alt="" className="h-11 w-auto object-contain flex-shrink-0" />
+            <span>Factrix</span>
+          </Link>
+          <div className="flex items-center gap-6">
+            <ul className="flex gap-8 text-sm font-medium text-white/90">
+              <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+            </ul>
+            <Link
+              to="/login"
+              className="btn btn-ghost text-white hover:bg-white/10 border border-white/50"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="btn bg-white text-[#0f172a] hover:bg-white/90 border-0"
+            >
+              Sign up
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      {}
+      <section
+        id="home"
+        className="flex-1 bg-[#0f172a] text-white py-24 px-6"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            Welcome to Factrix
+          </h1>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto mb-10">
+            Your trusted partner for quality care and service. We're here to help you every step of the way.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              to="/about"
+              className="px-6 py-3 bg-white text-[#0f172a] font-semibold rounded-lg hover:bg-white/90 transition-colors inline-block"
+            >
+              Learn more
+            </Link>
+            <Link
+              to="/contact"
+              className="px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors inline-block"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {}
+      <section
+        id="about"
+        className="bg-white text-[#0f172a] py-20 px-6 border-t border-[#e2e8f0]"
+      >
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8 text-center">About us</h2>
+          <p className="text-[#64748b] text-lg max-w-2xl mx-auto text-center leading-relaxed">
+            We combine expertise with a personal touch to deliver results that matter.
+            Explore what we offer and how we can support you.
+          </p>
+        </div>
+      </section>
+
+      {}
+      <footer className="bg-[#0f172a] text-white py-8 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <Link to="/" className="flex items-center gap-2 font-semibold hover:opacity-90">
+            <img src="/factrixlogo.svg" alt="" className="h-9 w-auto object-contain flex-shrink-0" />
+            <span>Factrix</span>
+          </Link>
+          <nav className="flex items-center gap-6 text-sm">
+            <Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
+            <Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link>
+            <Link to="/contact" className="text-white/80 hover:text-white transition-colors">Contact</Link>
+          </nav>
+          <p className="text-sm text-white/70">
+            © {new Date().getFullYear()} Factrix. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
