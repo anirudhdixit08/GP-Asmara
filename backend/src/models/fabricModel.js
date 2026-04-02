@@ -45,6 +45,11 @@ const fabricSchema = new Schema(
       type: [fabricColorSchema],
       default: [{ colorName: "TBD", pantoneColorHex: "#FDFD96" }],
     },
+    fabricComposition: {
+      type: String,
+      trim: true,
+      default: "",
+    },
     labDipApprovalDate: {
       type: Date,
     },

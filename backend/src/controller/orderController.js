@@ -428,6 +428,7 @@ export const updateFabric = async (req, res) => {
         "colorName",
         "pantoneCode",
         "pantoneColorHex",
+        "fabricComposition",
         "labDipApprovalDate",
         "iobApprovalDate",
         "bulkInhouseDate",
