@@ -324,6 +324,11 @@ export default function OrderDetail() {
       return;
     }
 
+    const fabricCompositionInput =
+      form?.fabricComposition?.value ??
+      form?.elements?.namedItem?.("fabricComposition")?.value ??
+      (form?.getElementsByName?.("fabricComposition")?.[0]?.value || "");
+    const fabricComposition = String(fabricCompositionInput || "").trim();
     const body = {
       labDipApprovalDate: form.labDipApprovalDate?.value || null,
       iobApprovalDate: form.iobApprovalDate?.value || null,
@@ -335,6 +340,7 @@ export default function OrderDetail() {
       const fd = new FormData();
       Object.entries(body).forEach(([k, v]) => { if (v != null && v !== undefined) fd.append(k, v); });
       fd.append("colors", JSON.stringify(normalizedColors));
+      fd.append("fabricComposition", fabricComposition);
       const file = form.fabricSketch?.files?.[0];
       if (file) fd.append("fabricSketch", file);
       await axiosClient.patch(`/order/update-fabric/${order.fabric._id}`, fd);
@@ -615,6 +621,17 @@ export default function OrderDetail() {
                     {editingTab === "Fabric" && order.fabric ? (
                       <form onSubmit={handleSaveFabric} className="space-y-3">
                         <div className="space-y-3">
+                          <div className="form-control">
+                            <label className="label py-0">
+                              <span className="label-text text-sm">Fabric composition</span>
+                            </label>
+                            <input
+                              name="fabricComposition"
+                              className="input input-bordered input-sm w-full"
+                              defaultValue={order.fabric.fabricComposition || ""}
+                              placeholder="e.g. 100% Cotton"
+                            />
+                          </div>
                           <div className="flex items-center justify-between">
                             <span className="label-text text-sm font-medium">Fabric colors</span>
                             <button
@@ -740,6 +757,14 @@ export default function OrderDetail() {
                               </div>
                             ))}
                           </div>
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-base-content/70 uppercase tracking-wider block mb-1">
+                            Fabric composition
+                          </span>
+                          <p className="font-medium">
+                            {order.fabric.fabricComposition || "—"}
+                          </p>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                           <p><span className="text-base-content/70">Lab dip approval:</span> {formatDate(order.fabric.labDipApprovalDate)}</p>
